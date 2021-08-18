@@ -1,0 +1,44 @@
+---
+title: "A minimal flipbook"
+subtitle: "With flipbookr and xaringan"
+author: "You!"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: "default.css"
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+```{r}
+library(nycflights13)
+library(flipbookr)
+library(tidyverse)
+```
+
+---
+
+
+
+### هل هذة البيانات بشكلها الحالي جاهزة للعمل عليها؟
+
+
+```{r, echo=FALSE, out.height="50%", message=FALSE}
+
+
+gapminder <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder_wide.csv") 
+
+gapminder %>% 
+  rmarkdown::paged_table()
+
+```
+
+--
+
+.red[ ### كم متغير عندنا؟]
+
+

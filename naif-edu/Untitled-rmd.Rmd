@@ -1,0 +1,114 @@
+---
+title: "Untitled"
+author: "Naif"
+date: "7/29/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r, error=TRUE}
+1+"a"
+```
+
+
+
+<!-- ## Load data -->
+<!-- ```{r} -->
+<!-- library(tidyverse) -->
+
+<!-- diamonds_raw <- read_csv("https://raw.githubusercontent.com/tidyverse/ggplot2/master/data-raw/diamonds.csv") -->
+
+<!-- cut_levels <- c("Fair", "Good", "Very Good", "Premium", "Ideal") -->
+<!-- color_levels <- c(LETTERS[4:10]) -->
+<!-- clarity_levels <- c("I1", "SI2", "SI1", "VS2", "VS1", "VVS2", "VVS1", "IF") -->
+
+
+<!-- diamonds <- diamonds_raw %>%  -->
+<!--   mutate( -->
+<!--     cut = factor(cut, levels = cut_levels, ordered = TRUE), -->
+<!--     color = factor(color, levels = color_levels, ordered = TRUE), -->
+<!--     clarity = factor(clarity, levels = clarity_levels, ordered = TRUE), -->
+<!--     ) -->
+
+
+
+
+<!-- ``` -->
+
+
+
+
+<!-- ## مقدمة -->
+
+<!-- الغرض من هذا العمل هو تحليل بيانات الالماس لتحديد اكثر المتغيرات تاثيرا علي السعر -->
+
+
+
+<!-- ## Data quality report -->
+
+<!-- ```{r} -->
+
+<!-- library(skimr) -->
+
+<!-- diamonds %>%  -->
+<!--   skim() -->
+
+
+<!-- ``` -->
+
+
+<!-- ## المتغيرات الكمية -->
+
+<!-- * Price -->
+
+<!-- ```{r} -->
+
+<!-- ``` -->
+
+
+<!-- * Others -->
+
+
+
+
+<!-- ## المتغيرات الاسمية -->
+
+<!-- * Others -->
+
+
+
+<!-- ## العلاقات  -->
+
+
+<!-- ### ليش وسيط سعر الالماس يقل مع تحسن القطع؟ -->
+
+<!-- ```{r} -->
+
+<!-- install.packages("heatmaply") -->
+
+<!-- heatmaply::heatmaply_cor(diamonds) -->
+
+<!-- ``` -->
+
+
+
+
+<!-- ## data quality plan -->
+
+<!-- feature | issue                    | potential soluation|  comment         -->
+<!-- --------|--------------------------|--------------------|------------------ -->
+<!-- price   | Right skewed             | take log           | result is bimodal -->
+<!-- carat   | Right skewed             | take log           | -->
+<!-- depth   | Outlier (right-left)     |                    | is it valid?  -->
+<!-- table   | Outlier (right-left)     |                    | is it valid?  -->
+<!-- x       | Outlier (right-left)     |                    | is it valid?  -->
+<!-- y       | Outlier (right-left)     |                    | is it valid?  -->
+<!-- z       | Outlier (right-left)     |                    | is it valid?  -->
+
+
+
