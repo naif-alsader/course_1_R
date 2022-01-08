@@ -6,6 +6,7 @@
     <meta name="author" content="Yihui Xie" />
     <script src="libs/header-attrs-2.9/header-attrs.js"></script>
     <link rel="stylesheet" href="default.css" type="text/css" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -15,7 +16,7 @@ class: center, middle, inverse, title-slide
 ## ⚔<br/>with xaringan
 ### Yihui Xie
 ### RStudio, PBC
-### 2016/12/12 (updated: 2021-08-14)
+### 2016/12/12 (updated: 2021-08-27)
 
 ---
 
@@ -31,6 +32,151 @@ class: inverse, center, middle
 ]
 
 ---
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 128px;
+z-index: 0;
+background-image: url(img/trans_logo.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;left:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+## الاجندة
+
+* مراجعة لاساسيات آر
+* دورة مشروع البيانات
+* كيف تبداء مع البيانات
+* تصوير البيانات
+* تحديد واستخراج المتغيرات
+* Tidying
+* ربط البيانات
+* إدخال البيانات
+* البيانات المفقودة
+* البيانات الشاذة
+ 
+
+---
+
+class: inverse
+
+
+مراجعة لاساسيات آر
+
+* ماهو المتجة وماهي  انواع المتجهات 
+(Vector)
+؟
+
+* ماهو الآسم و ماهي علامة
+`&lt;-`
+؟
+
+* ماهو الكائن (Object)
+؟
+
+* ماهو النوع
+(class)
+؟
+
+* ماهي الدالة
+(function)
+؟
+
+&lt;!-- * انواع تصوير البيانات --&gt;
+
+&lt;!-- * ماهو ggplot2 وما هي اهم مكوناتة --&gt;
+
+&lt;!-- * ggplot2`s template: --&gt;
+
+&lt;!-- * ggplot2`s cheatsheet: --&gt;
+
+  
+
+---
+
+##  ماهو المتجة وماهي  انواع المتجهات (Vector)?
+
+.pull-left[
+
+![source: https://adv-r.hadley.nz/vectors-chap.html](https://d33wubrfki0l68.cloudfront.net/baa19d0ebf9b97949a7ad259b29a1c4ae031c8e2/8e9b8/diagrams/vectors/summary-tree-s3-1.png)
+
+.caption[Source: https://adv-r.hadley.nz/vectors-chap.html]
+
+]
+
+.pull-right[
+
+```r
+c(1, 2, 3)
+```
+
+```
+## [1] 1 2 3
+```
+
+```r
+c("a", "b", "c")
+```
+
+```
+## [1] "a" "b" "c"
+```
+
+```r
+c(TRUE, FALSE)
+```
+
+```
+## [1]  TRUE FALSE
+```
+]
+
+
+---
+
+
+## ماهو الآسم و ماهي علامة `&lt;-`?
+
+
+```r
+x &lt;- c(1, 2, 3)
+y &lt;- c("a", "b", "c")
+z &lt;- c(TRUE, FALSE)
+```
+
+
+[](https://d33wubrfki0l68.cloudfront.net/bd90c87ac98708b1731c92900f2f53ec6a71edaf/ce375/diagrams/name-value/binding-1.png)
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
