@@ -8,7 +8,7 @@ output:
   xaringan::moon_reader:
     self_contained: true
     lib_dir: libs
-    css: "default.css"
+    css: ["default.css",xaringan-themer.css]
     nature:
       ratio: 16:10
       highlightStyle: github
@@ -21,6 +21,30 @@ knitr::opts_chunk$set(fig.width = 6, message = FALSE, warning = FALSE, comment =
 library(flipbookr)
 library(tidyverse)
 
+```
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+library(xaringanExtra)
+#2F3D91
+#3467B0
+#3886C7
+#3B9BD6
+
+style_mono_accent(base_color = "#3467B0", black_color = "2F3D91",
+                  title_slide_background_image = "img/imageedit_1_9320575936.png",
+                  #title_slide_background_size = "75%",
+                  #title_slide_background_position = "top left",
+                  background_image =  "img/imageedit_1_9320575936.png",
+                  title_slide_background_color = "#FFFF",
+                  title_slide_text_color = "#2F3D91",
+                  )
+```
+
+
+```{r xaringan-logo, echo=FALSE}
+xaringanExtra::use_logo(
+  image_url = "img/trans_logo.png", position = css_position(left = "1em", top = "1em" )
+)
 ```
 
 ## الاجندة
