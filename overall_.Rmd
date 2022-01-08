@@ -734,7 +734,7 @@ class:inverse, center, middle
 
 ### Dplyr library
 
-.pull-left[![https://dplyr.tidyverse.org](https://dplyr.tidyverse.org/logo.png)]
+.pull-left[![](img/logo-dplyer.png)]
 
 .pull-right[
 
