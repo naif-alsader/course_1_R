@@ -18,6 +18,12 @@ a, a > code {
 }
 .remark-code-line-highlighted     { background-color: #ffff88; }
 
+.remark-code-line {
+    min-height: 1em;
+    background: white;
+}
+
+
 .inverse {
   background-color: #272822;
   color: #d6d6d6;
