@@ -105,7 +105,7 @@ class: inverse
 
 ```{r, echo=FALSE, fig.cap="source: https://adv-r.hadley.nz/vectors-chap.html"}
 
-knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/baa19d0ebf9b97949a7ad259b29a1c4ae031c8e2/8e9b8/diagrams/vectors/summary-tree-s3-1.png")
+knitr::include_graphics("img/summary-tree-s3-1.png")
 
 ```
 
@@ -1244,7 +1244,7 @@ y
 .pull-right[
 
 ```{r, echo=FALSE}
-knitr::include_graphics("https://github.com/gadenbuie/tidyexplain/raw/master/images/inner-join.gif")
+knitr::include_graphics("img/inner-join.gif")
 ```
 
 ]
@@ -1257,7 +1257,7 @@ knitr::include_graphics("https://github.com/gadenbuie/tidyexplain/raw/master/ima
 
 ```{r, echo=FALSE}
 
-knitr::include_graphics("https://github.com/gadenbuie/tidyexplain/raw/master/images/left-join.gif")
+knitr::include_graphics("img/left-join.gif")
 
 ```
 ]
@@ -1267,7 +1267,7 @@ knitr::include_graphics("https://github.com/gadenbuie/tidyexplain/raw/master/ima
 
 ```{r, echo=FALSE}
 
-knitr::include_graphics("https://github.com/gadenbuie/tidyexplain/raw/master/images/right-join.gif")
+knitr::include_graphics("img/right-join.gif")
 
 ```
 ]
@@ -1282,7 +1282,7 @@ knitr::include_graphics("https://github.com/gadenbuie/tidyexplain/raw/master/ima
 
 ```{r, echo=FALSE}
 
-knitr::include_graphics("https://github.com/gadenbuie/tidyexplain/raw/master/images/semi-join.gif")
+knitr::include_graphics("img/semi-join.gif")
 
 ```
 ]
@@ -1292,7 +1292,7 @@ knitr::include_graphics("https://github.com/gadenbuie/tidyexplain/raw/master/ima
 
 ```{r, echo=FALSE}
 
-knitr::include_graphics("https://github.com/gadenbuie/tidyexplain/raw/master/images/anti-join.gif")
+knitr::include_graphics("img/anti-join.gif")
 
 
 ```
@@ -1306,7 +1306,7 @@ knitr::include_graphics("https://github.com/gadenbuie/tidyexplain/raw/master/ima
 
 
 ```{r, echo=FALSE}
-knitr::include_graphics("https://github.com/gadenbuie/tidyexplain/raw/master/images/full-join.gif")
+knitr::include_graphics("img/full-join.gif")
 
 ```
 
@@ -1331,7 +1331,7 @@ knitr::include_graphics("https://github.com/gadenbuie/tidyexplain/raw/master/ima
 
 ```{r, echo=FALSE}
 
-knitr::include_graphics("https://github.com/gadenbuie/tidyexplain/raw/master/images/left-join-extra.gif")
+knitr::include_graphics("img/left-join-extra.gif")
 
 ```
 
