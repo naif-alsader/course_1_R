@@ -21,6 +21,7 @@ a, a > code {
 .remark-code-line {
     min-height: 1em;
     background: white;
+    font-size: small;
 }
 
 
