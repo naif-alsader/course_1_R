@@ -1,0 +1,448 @@
+---
+title: "تحليل البيانات بإستخدام آر"
+subtitle: "(المستوى المتوسط)"
+author: "نايف العتيبي"
+institute: "الهيئة العامة للإحصاء"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    self_contained: true
+    lib_dir: libs
+    css: ["default.css",xaringan-themer.css]
+    nature:
+      ratio: 16:10
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r, include = F}
+knitr::opts_chunk$set(fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = F)
+library(flipbookr)
+library(tidyverse)
+
+```
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+library(xaringanExtra)
+#2F3D91
+#3467B0
+#3886C7
+#3B9BD6
+
+style_mono_accent(base_color = "#3467B0", black_color = "2F3D91",
+                  title_slide_background_image = "img/imageedit_1_9320575936.png",
+                  #title_slide_background_size = "75%",
+                  #title_slide_background_position = "top left",
+                  background_image =  "img/imageedit_1_9320575936.png",
+                  title_slide_background_color = "#FFFF",
+                  title_slide_text_color = "#2F3D91",
+                  )
+```
+
+
+```{r xaringan-logo, echo=FALSE}
+xaringanExtra::use_logo(
+  image_url = "img/trans_logo.png", position = css_position(left = "1em", top = "1em" )
+)
+```
+
+## الاجندة
+
+* مراجعة لاساسيات آر
+* دورة مشروع البيانات
+* كيف تبداء مع البيانات
+* تصوير البيانات
+* تحديد واستخراج المتغيرات
+* Tidying
+* ربط البيانات
+* البيانات المفقودة
+* البيانات الشاذة
+ 
+
+---
+
+class: inverse
+
+
+مراجعة لاساسيات آر
+
+* ماهو المتجة وماهي  انواع المتجهات 
+(Vector)
+؟
+
+* ماهو الآسم و ماهي علامة
+`<-`
+؟
+
+* ماهو الكائن (Object)
+؟
+
+* ماهو النوع
+(class)
+؟
+
+* ماهي الدالة
+(function)
+؟
+
+<!-- * انواع تصوير البيانات -->
+
+<!-- * ماهو ggplot2 وما هي اهم مكوناتة -->
+
+<!-- * ggplot2`s template: -->
+
+<!-- * ggplot2`s cheatsheet: -->
+
+  
+
+---
+
+##  ماهو المتجة وماهي  انواع المتجهات (Vector)
+؟
+
+.pull-left[
+
+```{r, echo=FALSE, fig.cap="source: https://adv-r.hadley.nz/vectors-chap.html"}
+
+knitr::include_graphics("img/summary-tree-s3-1.png")
+
+```
+
+.caption[Source: https://adv-r.hadley.nz/vectors-chap.html]
+
+]
+
+.pull-right[
+```{r}
+c(1, 2, 3)
+c("a", "b", "c")
+c(TRUE, FALSE)
+```
+]
+
+
+---
+
+
+## ماهو الآسم و ماهي علامة `<-`
+؟
+
+```{r}
+
+x <- c(1, 2, 3)
+y <- c("a", "b", "c")
+z <- c(TRUE, FALSE)
+
+```
+
+
+[](https://d33wubrfki0l68.cloudfront.net/bd90c87ac98708b1731c92900f2f53ec6a71edaf/ce375/diagrams/name-value/binding-1.png)
+
+
+
+```{r, warning=FALSE, message=FALSE,error=FALSE}
+#install.packages("lobstr")
+library(lobstr)
+obj_addr(x)
+obj_addr(x)
+
+obj_addr(c(1,2,3))
+obj_addr(c(1,2,3))
+
+```
+
+
+---
+## ماهو النوع (class)
+؟
+
+.pull-left[
+```{r}
+class(x)
+class(y)
+class(z)
+```
+]
+
+
+.pull-right[
+
+```{r}
+z <- c(TRUE, FALSE)
+z_numeric <- as.numeric(z)
+
+class(z_numeric)
+z_numeric
+
+```
+]
+
+
+---
+
+## ماهو الكائن (Object)
+؟
+
+
+```{r,  error=TRUE}
+
+"z"
+
+z
+
+"w"
+
+w
+
+```
+
+
+
+
+---
+
+## ماهي الدالة (function)
+؟
+
+
+
+```{r}
+df <- tibble(
+  a = rnorm(10),
+  b = rnorm(10),
+  c = rnorm(10),
+  d = rnorm(10)
+)
+
+df$a <- ( df$a - mean(df$a))
+df$b <- ( df$b - mean(df$b))
+df$c <- ( df$c - mean(df$c))
+df$d <- ( df$d - mean(df$d))
+
+remove_mean <- function(x) {
+    x - mean(x)
+}
+
+df$a <- remove_mean( df$a )
+df$b <- remove_mean( df$b )
+df$c <- remove_mean( df$c )
+df$d <- remove_mean( df$d )
+
+```
+
+---
+
+
+## ماهي الدالة (function)
+؟
+
+
+
+
+```{r}
+f02 <- function(x, y) {
+  # A comment
+  x + y
+}
+
+formals(f02) # arguments
+
+body(f02)
+
+environment(f02)
+```
+
+
+
+
+---
+
+class: inverse, center, middle
+
+
+# دورة مشروع البيانات
+
+
+---
+
+```{r, echo=FALSE}
+
+knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/795c039ba2520455d833b4034befc8cf360a70ba/558a5/diagrams/data-science-explore.png")
+
+```
+
+.caption[Source: https://r4ds.had.co.nz/explore-intro.html]
+
+
+* Import: قراءة البيانات
+* Tidy: تحضير البيانات لنحصل علي الشكل المناسب للنبداء مرحلة الاستكشاف
+* Transform: استخراج الانماط من البيانات 
+* Visualise: تصوير البيانات
+* Model:  بناء النموذج
+* Communicate: كتابة التقرير النهائي
+
+---
+
+class: inverse, center, middle
+
+
+## كيف تبداء مع البيانات؟
+
+---
+### السلام عليكم، كيف حالك بيانات؟
+
+1. حدد الهدف الرئيسي من البيانات
+1. اطلع على البيانات
+1. ابداء التحليل المبدئي لجودة البيانات
+1. ماهو توزيع المتغيرات الكمية؟
+1. ماهو توزيع المتغيرات الاسمية؟
+1. ماهي العلاقة بين  المتغيرات؟
+1. دون الملاحظات.
+
+---
+class: inverse, center, middle
+
+
+# جرب نفسك! 
+
+# Diamonds 
+
+```{r, warning=FALSE, message=FALSE, error=FALSE,eval=FALSE}
+
+
+library(tidyverse)
+
+diamonds <- read_csv("https://raw.githubusercontent.com/tidyverse/ggplot2/master/data-raw/diamonds.csv")
+
+# Data Dictionary "https://ggplot2.tidyverse.org/reference/diamonds.html"
+
+```
+
+???
+
+open rmarkdown and put the question and prepare the document
+
+
+
+```{r, include=FALSE}
+
+cut_levels = c("Fair", "Good", "Very Good", "Premium", "Ideal")
+color_levels = c("D", "E", "F", "G", "H", "I", "J")
+clarity_levels = c("I1", "SI2", "SI1",  "VS2",  "VS1",  "VVS2", "VVS1", "IF")
+
+
+diamonds <- diamonds %>% 
+  mutate(
+    cut = factor(cut, levels = cut_levels, ordered = TRUE),
+    color = factor(color, levels  = color_levels, ordered = TRUE),
+    clarity = factor(clarity, levels  = clarity_levels, ordered = TRUE))
+
+```
+
+
+---
+class: center, middle
+
+## الهدف هو دراسة تاثير السعر على المتغيرات الاخرى
+
+
+
+---
+class: inverse, center, middle
+
+
+### data quality report
+
+```{r, eval=FALSE}
+#install.packages("skimr")
+library(skimr)
+diamonds %>% 
+  skim()
+
+```
+
+---
+
+class: inverse, center, middle
+
+
+الان حددنا الأسئلة ودونا الملاحظات
+طيب كيف راح نجاوب عليها؟
+--
+
+.my-ltr[
+>"The single graph has brought more information to the data analyst`s mind than any device" - John Tukey
+]
+
+--
+## تمثيل البيانات
+
+---
+### كيف احدد نوع الرسم البياني؟
+--
+
+* المدرج التكراري  او توزيع الكثافة للمتغيرات الفردية الكمية
+--
+
+*  لوحة الانتشار للمتغيرات الثنائية الكمية
+--
+
+* السلسلة الزمنية للمتغيرات الي تحتوي علي زمن
+--
+
+* رسمة موسياك او مخطط الاشرطة  للمتغيرات الوصفية 
+--
+
+* مصفوفة الترابط بين جميع المتغيرات الكمية
+--
+
+* مصادر جيدة لتحديد التمثيل المناسب حسب نوع البيانات
+
+* https://www.data-to-viz.com
+
+* https://clauswilke.com/dataviz/directory-of-visualizations.html
+
+
+
+
+
+<!-- افتح الموقع الاول واشح انواع الرسوم البيانية ابداء مع المتغير الواحد كمي وواحد اسمي -->
+
+
+---
+
+class: inverse, center, middle
+
+## هل سمعت في 
+ggplot2
+?
+---
+
+### قالب ggplot2
+
+
+```{r ggplot_template, eval=FALSE, out.width= 4}
+
+<data> %>% 
+  ggplot(aes(x = <x>, y = <y>)) +
+  geom_<geom>()
+
+```
+
+
+---
+
+`r chunk_reveal("price_diamonds_showcase1", break_type = "rotate", width = c(1,2), title =
+"### المدرج التكراري للسعر")`
+
+
+```{r price_diamonds_showcase1, include = FALSE, out.width= 4}
+
+diamonds %>%
+  ggplot(aes(x = price)) + 
+  geom_histogram()  #ROTATE
+  geom_boxplot()   #ROTATE
+  geom_density(fill = "Red") #ROTATE
+
+```

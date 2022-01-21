@@ -2,7 +2,7 @@
 title: "تحليل البيانات بإستخدام آر"
 subtitle: "(المستوى المتوسط)"
 author: "نايف العتيبي"
-institute: "الهيئة العامة للإحصاء"
+institute: "الجمعية المهنية للاحصائين وعلماء البيانات"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
@@ -56,9 +56,8 @@ xaringanExtra::use_logo(
 * تحديد واستخراج المتغيرات
 * Tidying
 * ربط البيانات
-* إدخال البيانات
 * البيانات المفقودة
-* البيانات الشاذة
+
  
 
 ---
@@ -99,7 +98,8 @@ class: inverse
 
 ---
 
-##  ماهو المتجة وماهي  انواع المتجهات (Vector)?
+##  ماهو المتجة وماهي  انواع المتجهات (Vector)
+؟
 
 .pull-left[
 
@@ -125,7 +125,8 @@ c(TRUE, FALSE)
 ---
 
 
-## ماهو الآسم و ماهي علامة `<-`?
+## ماهو الآسم و ماهي علامة `<-`
+؟
 
 ```{r}
 
@@ -149,11 +150,13 @@ obj_addr(x)
 obj_addr(c(1,2,3))
 obj_addr(c(1,2,3))
 
+
 ```
 
 
 ---
-## ماهو النوع (class)?
+## ماهو النوع (class)
+؟
 
 .pull-left[
 ```{r}
@@ -180,6 +183,7 @@ z_numeric
 ---
 
 ## ماهو الكائن (Object)
+؟
 
 
 ```{r,  error=TRUE}
@@ -199,7 +203,8 @@ w
 
 ---
 
-## ماهي الدالة (function)?
+## ماهي الدالة (function)
+؟
 
 
 
@@ -230,7 +235,8 @@ df$d <- remove_mean( df$d )
 ---
 
 
-## ماهي الدالة (function)?
+## ماهي الدالة (function)
+؟
 
 
 
@@ -270,11 +276,11 @@ knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/795c039ba2520455d
 .caption[Source: https://r4ds.had.co.nz/explore-intro.html]
 
 
-* Import:  هو عملية قراءة البيانات
-* Tidy: هي عملية تحضير البيانات لنحصل علي الشكل المناسب للنبداء مرحلة الاستكشاف
-* Transform: هي عملية استخراج الانماط من البيانات 
+* Import: قراءة البيانات
+* Tidy: تحضير البيانات لنحصل علي الشكل المناسب للنبداء مرحلة الاستكشاف
+* Transform: استخراج الانماط من البيانات 
 * Visualise: تصوير البيانات
-* Model: مرحلة بناء النموذج
+* Model:  بناء النموذج
 * Communicate: كتابة التقرير النهائي
 
 ---
@@ -285,10 +291,11 @@ class: inverse, center, middle
 ## كيف تبداء مع البيانات؟
 
 ---
-### السلام عليكم، كيف حالك داتا؟
+### السلام عليكم، كيف حالك بيانات؟
 
-1. حدد السؤال او الاسئلة الي راح تجاوب عليها. 
-1. حدد البيانات الي راح تحتاجها.
+1. حدد الهدف الرئيسي من البيانات
+1. اطلع على البيانات
+1. ابداء التحليل المبدئي لجودة البيانات
 1. ماهو توزيع المتغيرات الكمية؟
 1. ماهو توزيع المتغيرات الاسمية؟
 1. ماهي العلاقة بين  المتغيرات؟
@@ -308,6 +315,8 @@ class: inverse, center, middle
 library(tidyverse)
 
 diamonds <- read_csv("https://raw.githubusercontent.com/tidyverse/ggplot2/master/data-raw/diamonds.csv")
+
+# Data Dictionary "https://ggplot2.tidyverse.org/reference/diamonds.html"
 
 ```
 
@@ -334,13 +343,10 @@ diamonds <- diamonds %>%
 
 
 ---
+class: center, middle
 
-### :هنا مجموعة من الاسئلة الي اعتقد انها مهمة
+## الهدف هو دراسة تاثير السعر على المتغيرات الاخرى
 
-* الهدف هو دراسة تاثير المتغيرات علي السعر
-* ماهو توزيع السعر والمتغيرات الكمية الاخرى؟
-* ماهو توزيع المتغيرات الاسمية؟
-* ماهي العلاقة بين السعر والمتغيرات الاخرى؟
 
 
 ---
@@ -362,7 +368,7 @@ diamonds %>%
 class: inverse, center, middle
 
 
-الان حددنا الآسذلة ودونا الملاحظات
+الان حددنا الأسئلة ودونا الملاحظات
 طيب كيف راح نجاوب عليها؟
 --
 
@@ -371,29 +377,32 @@ class: inverse, center, middle
 ]
 
 --
-## تصوير البيانات
+## تمثيل البيانات
 
 ---
 ### كيف احدد نوع الرسم البياني؟
 --
 
-<!-- * المدرج التكراري  للمتغيرات الفردية -->
-<!-- -- -->
+* المدرج التكراري  او توزيع الكثافة للمتغيرات الفردية الكمية
+--
 
-<!-- *  لوحة الانتشار للمتغيرات الكمية -->
-<!-- -- -->
+*  لوحة الانتشار للمتغيرات الثنائية الكمية
+--
 
-<!-- * السلسلة الزمنية للمتغيرات الي تحتوي علي وقت -->
-<!-- -- -->
+* السلسلة الزمنية للمتغيرات الي تحتوي علي زمن
+--
 
-<!-- * رسمة موسياك للمتغيرات الوصفية -->
-<!-- -- -->
+* رسمة موسياك او مخطط الاشرطة  للمتغيرات الوصفية 
+--
 
-<!-- * مصفوفة الترابط بين جميع المتغيرات الكمية -->
+* مصفوفة الترابط بين جميع المتغيرات الكمية
+--
 
-https://www.data-to-viz.com
+* مصادر جيدة لتحديد التمثيل المناسب حسب نوع البيانات
 
-https://clauswilke.com/dataviz/directory-of-visualizations.html
+* https://www.data-to-viz.com
+
+* https://clauswilke.com/dataviz/directory-of-visualizations.html
 
 
 
@@ -404,60 +413,107 @@ https://clauswilke.com/dataviz/directory-of-visualizations.html
 
 ---
 
-`r chunk_reveal("price_diamonds_histo", width = c(1,2), title = 
+class: inverse, center, middle
+
+## هل سمعت في 
+ggplot2
+?
+---
+
+### قالب ggplot2
+
+
+```{r ggplot_template, eval=FALSE, out.width= 4}
+
+<data> %>% 
+  ggplot(aes(x = <x>, y = <y>)) +
+  geom_<geom>()
+
+```
+
+
+---
+
+`r chunk_reveal("price_diamonds_showcase1", break_type = "rotate", width = c(1,2), title =
+"### المدرج التكراري للسعر")`
+
+
+```{r price_diamonds_showcase1, include = FALSE, out.width= 4}
+
+diamonds %>%
+  ggplot(aes(x = price)) + 
+  geom_histogram()  #ROTATE
+  geom_boxplot()   #ROTATE
+  geom_density(fill = "Red") #ROTATE
+
+```
+
+---
+
+`r chunk_reveal("price_diamonds_histo", width = c(1,2), title =
 "### المدرج التكراري للسعر")`
 
 ```{r price_diamonds_histo, include = FALSE, out.width= 4}
 diamonds %>%
   ggplot(aes(x = price)) + #BREAK
   geom_histogram() + #BREAK
-  scale_x_log10() 
+  scale_x_log10()
 ```
 
 ---
 
 
-`r chunk_reveal("others_diamonds_histo", title = 
+`r chunk_reveal("others_diamonds_histo", title =
 "### المدرج التكراري لبقية المتغيرات")`
 
 ```{r others_diamonds_histo, include = FALSE}
 diamonds %>%
-  select(where(is.numeric)) %>% 
-  mutate(id = row_number()) %>% 
-  pivot_longer( cols =  -id) %>% 
+  select(where(is.numeric)) %>%
+  mutate(id = row_number()) %>%
+  pivot_longer( cols =  -id) %>%
   ggplot(aes(x = value)) + #BREAK
   geom_histogram() + #BREAK
   facet_wrap(~name) + #ROTATE
   facet_wrap(~name,
              scales = "free") #ROTATE
 
-  
+
 ```
 
 ---
 
 
 
-`r chunk_reveal("others_diamonds_box", title = 
+`r chunk_reveal("others_diamonds_box", title =
 "### او بالامكان استخدام boxplot")`
 
 ```{r others_diamonds_box, include = FALSE}
 diamonds %>%
-  select(where(is.numeric)) %>% 
-  mutate(id = row_number()) %>% 
-  pivot_longer( cols =  -id)%>% 
+  select(where(is.numeric)) %>%
+  mutate(id = row_number()) %>%
+  pivot_longer( cols =  -id)%>%
   ggplot(aes(x = value)) + #BREAK
   geom_boxplot() + #BREAK
   facet_wrap(~name) + #ROTATE
   facet_wrap(~name,
              scales = "free") #ROTATE
 
-  
+
 ```
 
 ---
+`r chunk_reveal("others_diamonds_bar_uni", title =
+"### المتغيرات الاسمية")`
 
-`r chunk_reveal("others_diamonds_bar", title = 
+```{r others_diamonds_bar_uni, include = FALSE}
+diamonds %>%
+  ggplot(aes(y = cut)) + #BREAK
+  geom_bar() 
+
+```
+---
+
+`r chunk_reveal("others_diamonds_bar", title =
 "### المتغيرات الاسمية")`
 
 ```{r others_diamonds_bar, include = FALSE}
@@ -469,9 +525,7 @@ diamonds %>%
   ggplot(aes(y = value)) + #BREAK
   geom_bar() + #BREAK
   facet_wrap(~name) + #ROTATE
-  facet_wrap(~name, scales = "free") #ROTATE 
-
-  
+  facet_wrap(~name, scales = "free") #ROTATE
 
 ```
 
@@ -485,15 +539,15 @@ diamonds %>%
 ### Data Quality Plan
 
 
-feature | issue                    | potential soluation|  comment        
+feature | issue                    | potential soluation|  comment
 --------|--------------------------|--------------------|------------------
 price   | Right skewed             | take log           | result is bimodal
 carat   | Right skewed             | take log           |
-depth   | Outlier (right-left)     |                    | is it valid? 
-table   | Outlier (right-left)     |                    | is it valid? 
-x       | Outlier (right-left)     |                    | is it valid? 
-y       | Outlier (right-left)     |                    | is it valid? 
-z       | Outlier (right-left)     |                    | is it valid? 
+depth   | Outlier (right-left)     |                    | is it valid?
+table   | Outlier (right-left)     |                    | is it valid?
+x       | Outlier (right-left)     |                    | is it valid?
+y       | Outlier (right-left)     |                    | is it valid?
+z       | Outlier (right-left)     |                    | is it valid?
 clarity | very view of `I1,IF`     |                    |
 color   |                          |                    |
 cut     | very view of `Fair`      |                    |
@@ -526,7 +580,7 @@ class: inverse, center, middle
 
 ---
 
-`r chunk_reveal("price_carat_diamonds_point",  title = 
+`r chunk_reveal("price_carat_diamonds_point",  title =
 "### السعر ضد الوزن")`
 
 ```{r price_carat_diamonds_point, include = FALSE}
@@ -543,7 +597,7 @@ diamonds %>% #BREAK
 
 ---
 
-`r chunk_reveal("price_cut_diamonds_boxplot", title = 
+`r chunk_reveal("price_cut_diamonds_boxplot", title =
 "### السعر ضد القطع")`
 
 ```{r price_cut_diamonds_boxplot, include = FALSE}
@@ -557,7 +611,7 @@ diamonds %>% #BREAK
 
 ---
 
-`r chunk_reveal("price_cut_diamonds_density", title = 
+`r chunk_reveal("price_cut_diamonds_density", title =
 "### السعر ضد القطع  باستخدام التوزيع"
 )`
 
@@ -570,7 +624,7 @@ diamonds %>% #BREAK
   ggplot(aes(y =  cut,
              x = price)) + #BREAK
   geom_density_ridges() +#BREAK
-  scale_x_log10() 
+  scale_x_log10()
 ```
 
 ---
@@ -591,6 +645,7 @@ class: inverse, center, middle
 >"EDA is fundamentally a creative process." - Hadly Wickham
 ]
 
+--
 حاول تكتشف السبب في حصولنا على قمتين في المدرج التكراري للسعر
 
 حاول تكتشف العلاقة بين السعر والوزن والقطع
@@ -604,12 +659,12 @@ class: inverse, center, middle
 
 diamonds %>% #BREAK
   mutate(carat = cut_width(carat, 1)) %>% #BREAK2
-  ggplot(aes(x = price, 
+  ggplot(aes(x = price,
              fill = carat #BREAK3
              )) + #BREAK
   geom_histogram() + #BREAK
   scale_x_log10()  #BREAK
-  
+
 
 ```
 
@@ -622,17 +677,17 @@ diamonds %>% #BREAK
 
 ```{r price_carat_diamonds_histo2, include = FALSE}
 
-diamonds %>% 
-  mutate(carat = cut_width(carat, 1)) %>% 
-  ggplot(aes(x = price, 
+diamonds %>%
+  mutate(carat = cut_width(carat, 1)) %>%
+  ggplot(aes(x = price,
              fill = carat, #ROTATE
              fill = cut, #ROTATE
              fill = color, #ROTATE
              fill = clarity #ROTATE
-             )) + 
-  geom_histogram() + 
-  scale_x_log10()  
-  
+             )) +
+  geom_histogram() +
+  scale_x_log10()
+
 
 ```
 
@@ -644,23 +699,23 @@ diamonds %>%
 .pull-left[
 ```{r}
 library(patchwork)
-p1<-diamonds %>% 
+p1<-diamonds %>%
   ggplot(aes(y = price, x = carat)) +
   geom_jitter() +
   scale_x_log10() +
-  scale_y_log10() 
+  scale_y_log10()
 
-p2<-diamonds %>% 
+p2<-diamonds %>%
   ggplot(aes(y = price, x = cut)) +
   geom_boxplot() +
-  scale_y_log10() 
- 
-p3<-diamonds %>% 
+  scale_y_log10()
+
+p3<-diamonds %>%
   ggplot(aes(y = carat, x = cut)) +
   geom_boxplot() +
-  scale_y_log10() 
+  scale_y_log10()
 
-p4<- diamonds %>% 
+p4<- diamonds %>%
   ggplot(aes(x = log10(carat), y = log10(price), color = cut)) +
   geom_jitter(alpha = .2) +
   geom_smooth()
@@ -723,10 +778,9 @@ class:inverse, center, middle
 * تحديد واستخراج المتغيرات
 * Tidying
 * ربط البيانات
-* إدخال البيانات
 ]
 * البيانات المفقودة
-* البيانات الشاذة
+
 
 
 
@@ -745,10 +799,13 @@ class:inverse, center, middle
 * `()arrange`:
  تساعد على ترتيب المشاهدات بناء على قيمة معينة
 * `()mutate`:
-تساعد على انشاء متغير جديد 
+تساعد على انشاء متغير جديد
 * `()summarise`:
 تساعد على استخراج نتيجة معينة من البيانات
+* `()group_by`
+تساعد على تقسيم البيانات الى مجموعات 
 ]
+
 
 ---
 
@@ -762,7 +819,9 @@ library(nycflights13)
 library(tidyverse)
 library(skimr)
 
-flights 
+flights
+
+# data dictionary "https://www.rdocumentation.org/packages/nycflights13/versions/1.0.1/topics/flights"
 ```
 
 ```{r include=FALSE}
@@ -770,7 +829,7 @@ flights
 library(nycflights13)
 library(skimr)
 
-flights 
+flights
 ```
 
 ---
@@ -778,33 +837,33 @@ flights
 class: center, inverse, middle
 
 
-### Filter()
+### ()Filter
 
 
 ---
 
-`r chunk_reveal("filter_1",title = 
+`r chunk_reveal("filter_1",title =
 "
 ### الرحلات المتاخرة لمدة ساعتين وأكثر
 ")`
 
 ```{r filter_1, include = FALSE}
 
-flights %>% 
-  filter(dep_delay >= 200)
+flights %>%
+  filter(dep_delay >= 160)
 
 ```
 
 ---
 
-`r chunk_reveal("filter_2", break_type = "rotate"  ,title = 
+`r chunk_reveal("filter_2", break_type = "rotate"  ,title =
 "
 ### الرحلات الواصلة الى IAH او HOU
 ")`
 
 ```{r filter_2, include = FALSE, error=TRUE}
 
-flights %>% 
+flights %>%
   filter(dest == "IAH" | dest == "HOU") %>% #ROTATE
   filter(dest == "IAH" & dest == "HOU") %>% #ROTATE
   filter(dest == "IAH", dest == "HOU") %>% #ROTATE
@@ -833,7 +892,7 @@ knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/01f4b6d39d2be8269
 
 ---
 
-`r chunk_reveal("filter_3", break_type = "rotate", title = 
+`r chunk_reveal("filter_3", break_type = "rotate", title =
 "
 ### الرحلات المغادرة في جولاي وسبتمبر واغسطس
 ")`
@@ -841,7 +900,7 @@ knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/01f4b6d39d2be8269
 
 ```{r filter_3, include=FALSE, error=TRUE}
 
-flights %>% 
+flights %>%
   filter(month %in% c(7,8,9)) %>% #ROTATE
   filter(month %in% 7:9) %>% #ROTATE
   filter(month >= 7 & month <= 9) %>% #ROTATE
@@ -852,7 +911,7 @@ flights %>%
 ```
 
 ---
-`r chunk_reveal("filter_4", break_type = "rotate", title = 
+`r chunk_reveal("filter_4", break_type = "rotate", title =
 "
 ### الرحلات التي لم تغادر في جولاي وسبتمبر واغسطس
 ")`
@@ -860,7 +919,7 @@ flights %>%
 
 ```{r filter_4, include=FALSE, error=TRUE}
 
-flights %>% 
+flights %>%
   filter(!month %in% c(7,8,9)) %>% #ROTATE
   filter(!(month == 7 |  month == 8 | month ==  9)) %>% #ROTATE
   filter(month != 7 &  month != 8 & month !=  9) %>% #ROTATE
@@ -871,7 +930,7 @@ flights %>%
 ---
 
 
-`r chunk_reveal("filter_5", break_type = "rotate", title = 
+`r chunk_reveal("filter_5", break_type = "rotate", title =
 "
 ### عدد الرحلات التي عمود dep_delay فيها يحمل قيمة مفقودة
 ")`
@@ -879,7 +938,7 @@ flights %>%
 
 ```{r filter_5, include=FALSE, error=TRUE}
 
-flights %>% 
+flights %>%
   filter(dep_delay == NA) %>% #ROTATE
   filter(is.na(dep_delay)) %>% #ROTATE
   print()
@@ -905,7 +964,7 @@ class: inverse, center, middle
 
 ```{r arrange_1, include=FALSE}
 
-flights %>% 
+flights %>%
   arrange(desc(air_time))
 
 ```
@@ -920,7 +979,7 @@ flights %>%
 
 ```{r arrange_2, include=FALSE}
 
-flights %>% 
+flights %>%
   slice_max(air_time, n = 10)
 
 ```
@@ -942,9 +1001,9 @@ class: inverse, middle, center
 
 ```{r arrange_3, include=FALSE}
 
-flights %>% 
+flights %>%
   select(-c(day,month, year)) %>%  #ROTATE
-  select(-c(1:3)) %>%  #select(-1:3)  #ROTATE 
+  select(-c(1:3)) %>%  #select(-1:3)  #ROTATE
   print()
 
 ```
@@ -959,7 +1018,7 @@ flights %>%
 
 ```{r arrange_4, include=FALSE}
 
-flights %>% 
+flights %>%
   select(starts_with("dep_"), #BREAK
          starts_with("arr_"))
 
@@ -974,7 +1033,7 @@ flights %>%
 ")`
 
 ```{r arrange_5, include=FALSE}
-flights %>% 
+flights %>%
   select(contains("dep_"),#BREAK
          contains("arr_"))
 
@@ -997,7 +1056,7 @@ class: inverse, middle, center
 
 
 ```{r mutate_1, include=FALSE}
-flights %>% 
+flights %>%
   mutate(air_time2 = arr_time - dep_time) #BREAK
 ```
 ---
@@ -1016,7 +1075,7 @@ class: inverse, middle, center
 
 
 ```{r count_1, include=FALSE}
-flights %>% 
+flights %>%
   count(dest, sort = TRUE) #BREAK
 ```
 
@@ -1029,7 +1088,7 @@ flights %>%
 
 
 ```{r count_2, include=FALSE}
-flights %>% 
+flights %>%
   count(origin, dest, sort = TRUE) #BREAK
 ```
 
@@ -1044,24 +1103,26 @@ class: inverse, middle, center
 `r chunk_reveal("summarise_1",  break_type = "non_seq" ,title =
 "
 ### احسب:
-* عدد الرحلات 
-* المتوسط لجميع الرحلات
-* اطول رحلة
-* اقصر رحلة
+* عدد الرحلات-  المتوسط لجميع الرحلات-  اطول رحلة - اقصر رحلة
 
 ")`
 
 
 ```{r summarise_1, include=FALSE}
-flights %>%  
-  summarise(n = n(), #BREAK
-            avg_time = mean(air_time, na.rm = TRUE),#BREAK3
-            max_time = max(air_time, na.rm = TRUE), #BREAK4
-            min_time = min(air_time, na.rm = TRUE) #BREAK5
-            ) %>% 
-  print() 
-  
+flights %>%
+  summarise(
+    # عدد الرحلات
+    n = n(), #BREAK
+    # متوسط الرحلة
+    avg_time = mean(air_time, na.rm = TRUE),#BREAK3
+    # اطول رحلة
+    max_time = max(air_time, na.rm = TRUE), #BREAK4
+    # اقصر رحلة
+    min_time = min(air_time, na.rm = TRUE) #BREAK5
+            ) 
+
 ```
+
 ---
 
 class: inverse, middle, center
@@ -1072,10 +1133,7 @@ class: inverse, middle, center
 `r chunk_reveal("summarise_2", break_type = "non_seq" ,title =
 "
 ### احسب:
-* عدد الرحلات 
-* المتوسط لجميع الرحلات
-* اطول رحلة
-* اقصر رحلة
+* عدد الرحلات-  المتوسط لجميع الرحلات-  اطول رحلة - اقصر رحلة
 لكل مشغل
 carrier
 ")`
@@ -1085,15 +1143,21 @@ carrier
 
 
 flights %>% #BREAK
-  group_by(carrier) %>% 
-  summarise(n = n(), 
-            avg_time = mean(air_time, na.rm = TRUE), #BREAK3
-            max_time = max(air_time, na.rm = TRUE), #BREAK4
-            min_time = min(air_time, na.rm = TRUE)  #BREAK5
-            ) %>% 
+  group_by(carrier) %>%
+  summarise(
+    # عدد الرحلات
+    n = n(), #BREAK
+    # متوسط الرحلة
+    avg_time = mean(air_time, na.rm = TRUE),#BREAK3
+    # اطول رحلة
+    max_time = max(air_time, na.rm = TRUE), #BREAK4
+    # اقصر رحلة
+    min_time = min(air_time, na.rm = TRUE) #BREAK5
+            ) %>%
   arrange(desc(n))
-  
+
 ```
+
 ---
 
 class: inverse, middle, center
@@ -1128,7 +1192,7 @@ gapminder <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-scienc
 ```{r, echo=FALSE, out.height=5}
 library(gapminder)
 
-gapminder %>% 
+gapminder %>%
   rmarkdown::paged_table()
 
 ```
@@ -1160,7 +1224,7 @@ knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/6f1ddb544fc5c69a2
 
 gapminder %>% #BREAK
   pivot_longer(3:38, names_to  = "year", values_to  = "gdpPercap") %>%  #BREAK
-  separate(year, c("measure", "year"), sep = "_") 
+  separate(year, c("measure", "year"), sep = "_")
 
 ```
 
@@ -1169,7 +1233,7 @@ gapminder %>% #BREAK
 
 gapminder_long <-gapminder %>% #BREAK
   pivot_longer(cols = 3:38, names_to  = "year", values_to  = "gdpPercap") %>%  #BREAK
-  separate(col = year, c("measure", "year"), sep = "_") 
+  separate(col = year, c("measure", "year"), sep = "_")
 ```
 
 ---
@@ -1182,19 +1246,19 @@ gapminder_long <-gapminder %>% #BREAK
 ```{r wide_data_1, include=FALSE}
 
 
-gapminder_long %>% 
-  unite(col = year, c("measure", "year")) %>% 
-  pivot_wider( names_from  = "year", values_from  = "gdpPercap")  
-  
+gapminder_long %>%
+  unite(col = year, c("measure", "year")) %>%
+  pivot_wider( names_from  = "year", values_from  = "gdpPercap")
+
 
 ```
 
 ```{r, echo=FALSE}
-gapminder_rows<-gapminder_long %>% 
-  distinct(continent, country) %>% 
-  nest(country) %>% 
-  mutate(data = map_chr(data,~paste( ..1$country,collapse =  ", ")) )  
-  
+gapminder_rows<-gapminder_long %>%
+  distinct(continent, country) %>%
+  nest(country) %>%
+  mutate(data = map_chr(data,~paste( ..1$country,collapse =  ", ")) )
+
 
 ```
 
@@ -1209,7 +1273,7 @@ gapminder_rows<-gapminder_long %>%
 
 
 ```{r separate_rows, include=FALSE}
-gapminder_rows %>% 
+gapminder_rows %>%
   separate_rows(data, sep = ", ")
 
 ```
@@ -1319,7 +1383,7 @@ knitr::include_graphics("img/full-join.gif")
 المفتاح قد يكون عمود او اكثر من عمود تستطيع من خلالها تميز كل صف من جدول البيانات. مثال على ذالك رقم الموظف.
 حيث يجب ان يحمل كل موظف رثم مميز لة.
 
-في جميع الحالات السابقة كان المفتاح الرئيسي هو العمود 
+في جميع الحالات السابقة كان المفتاح الرئيسي هو العمود
 `id`
 
 
@@ -1394,34 +1458,36 @@ top_dest <- flights %>%
   count(dest, sort = TRUE) %>%
   head(10)
 
-top_dest
-
-flights %>% 
-  inner_join(top_dest)
-
-
+top_dest 
 
 ```
 
 ---
+`r chunk_reveal("inner_join_2", title = "
+### كون جدول جديد يحتوي فقط على بيانات الرحلات لاكبر عشر dest"
+)`
 
-`r chunk_reveal("semi_join_1", title = "
+
+```{r inner_join_2, include=FALSE}
+flights %>%
+  inner_join(top_dest)
+
+```
+
+
+---
+
+
+`r chunk_reveal("semi_join_2"  ,title = "
 ### كون جدول جديد يحتوي فقط على بيانات الرحلات لاكبر عشر dest مع استبعاد العمود n"
 )`
 
-```{r semi_join_1, include=FALSE}
+```{r semi_join_2, include=FALSE}
 
-top_dest <- flights %>%
-  count(dest, sort = TRUE) %>%
-  head(10)
+flights %>%
+  semi_join(top_dest) 
 
-top_dest
-
-flights %>% 
-  semi_join(top_dest)
-
-flights %>% 
-  filter(dest %in% top_dest$dest)
+#filter(dest %in% top_dest$dest) 
 
 ```
 
@@ -1433,17 +1499,10 @@ flights %>%
 
 ```{r anti_join_1, include=FALSE}
 
-top_dest <- flights %>%
-  count(dest, sort = TRUE) %>%
-  head(10)
-
-top_dest
-
-flights %>% 
+flights %>%
   anti_join(top_dest)
 
-flights %>% 
-  filter(!dest %in% top_dest$dest)
+#filter(!dest %in% top_dest$dest)
 
 ```
 
@@ -1451,7 +1510,9 @@ flights %>%
 ---
 
 
-### مثال عملي على 
+--
+
+### مثال عملي على
 `full_join`
 
 
@@ -1479,11 +1540,10 @@ class: inverse, middle, centre
 * ~~تحديد واستخراج المتغيرات~~
 * ~~Tidying~~
 * ~~ربط البيانات~~
-* ~~إدخال البيانات~~
+
 
 .red[
 * البيانات المفقودة
-* البيانات الشاذة
 ]
 
 ---
@@ -1508,15 +1568,34 @@ class: inverse, center, middle
 انواع البيانات المفقودة
 
 .my-ltr[
-* Missing completely at random (MCAR): If the probability of being missing is the same for all cases, then the data are said to be missing completely at random (MCAR is often unrealistic for the data at hand)
+* Missing completely at random (MCAR):
 
-* Missing at random (MAR): If the probability of being missing is the same only within groups defined by the observed data (Most common)
+اذا كان احتمال ان يكون المتغير مفقود متساوي في جميع الاحلات. غالبا هذا الاحتمال غير مرجح.
 
-* Not missing at random (Systematic): 
+<!-- If the probability of being missing is the same for all cases, then the data are said to be missing completely at random (MCAR is often unrealistic for the data at hand) -->
 
-* Explicitly missing: flagged with NA 
+* Missing at random (MAR): 
 
-* Implicitly: Simply not present in the data.
+اذا كان احتمال ان يكون المتغير المفقود متساوي في مجموعة من البيانات. هذا الاحتمال هو الاكثر شيوعا.
+
+<!-- If the probability of being missing is the same only within groups defined by the observed data (Most common) -->
+
+* Not missing at random (Systematic):
+
+اذا كان هناك خطاء في البيانات بسبب خطاء في قراءة البيانات او جمعها.
+
+* Explicitly missing: 
+
+يتم الاشارة اليها بعلامة 
+`NA`
+
+<!-- flagged with NA -->
+
+* Implicitly: 
+
+ببساطة لا تكون ظاهرة في البيانات.
+
+<!-- Simply not present in the data. -->
 ]
 ---
 
@@ -1528,7 +1607,7 @@ class: inverse, middle, centre
 # devtools::install_github("jokergoo/ComplexHeatmap")
 # install.packages("naniar")
 
-riskfactors %>% 
+riskfactors %>%
   skim()
 
 ```
@@ -1536,10 +1615,12 @@ riskfactors %>%
 
 ---
 
+## بعض النصائح للتعامل مع القيم المفقودة
+
 * تأكد من أن جميع الأعمدة تحميل النوع الصحيح
 * تحقق من القيم المفقودة لكل متغير
 * ابحث عن انماط في القيم المفقودة
-* ابحث عن علاقات بين القيم المفقودة والغير مفقودة 
+* ابحث عن علاقات بين القيم المفقودة والغير مفقودة
 * ضع خطة لمعالجة القيم المفقودة
 
 ---
@@ -1557,14 +1638,14 @@ riskfactors_missing <- riskfactors %>%
   as_shadow_upset()
 
 
-riskfactors_missing %>% 
+riskfactors_missing %>%
 Heatmap(
 name = "Missing", #title of legend
 column_title = "Predictors", row_title = "Samples",
 col = c("lightgrey", "black"),
 show_heatmap_legend = FALSE,
 row_names_gp = gpar(fontsize = 0) # Text size for row names
- )  
+ )
 
 ```
 
@@ -1577,8 +1658,8 @@ row_names_gp = gpar(fontsize = 0) # Text size for row names
 
 ```{r upset_1, include=FALSE}
 
-riskfactors %>% 
-  gg_miss_upset() 
+riskfactors %>%
+  gg_miss_upset()
 
 ```
 
@@ -1590,7 +1671,7 @@ riskfactors %>%
 
 ```{r pregnant1, include=FALSE}
 
-riskfactors %>% 
+riskfactors %>%
 gg_miss_fct(pregnant)
 
 ```
@@ -1618,12 +1699,12 @@ gg_miss_fct(sex)
 
 ```{r impute_male, include=FALSE}
 
-riskfactors <- riskfactors %>% 
+riskfactors <- riskfactors %>%
   mutate(
     pregnant = as.character(pregnant),
     pregnant = if_else(sex == "Male", "No" , pregnant))
 
-riskfactors %>% 
+riskfactors %>%
   count(sex, pregnant)
 
 ```
@@ -1638,7 +1719,7 @@ riskfactors %>%
 ```{r, message=FALSE, warning=FALSE}
 #install.packages("recipes")
 library(recipes)
-# 
+#
 riskfactors_imp_knn <-
   recipe(income ~ ., data = riskfactors) %>%
   step_knnimpute(pregnant) %>%
@@ -1652,7 +1733,7 @@ riskfactors_imp_knn <-
 .pull-right[
 ```{r , echo=FALSE}
 riskfactors_imp_knn %>%
-  count(pregnant) %>% 
+  count(pregnant) %>%
   rmarkdown::paged_table()
 
 ```
@@ -1677,7 +1758,7 @@ stocks <- tibble(
   year   = c(2015, 2015, 2015, 2015, 2016, 2016, 2016),
   qtr    = c(   1,    2,    3,    4,    2,    3,    4),
   return = c(1.88, 0.59, 0.35,   NA, 0.92, 0.17, 2.66)
-) 
+)
 
 stocks %>% rmarkdown::paged_table()
 ```
@@ -1688,8 +1769,8 @@ stocks %>% rmarkdown::paged_table()
 .pull-right[
 
 ```{r, echo=FALSE}
-stocks %>% 
-  complete(year, qtr) %>% 
+stocks %>%
+  complete(year, qtr) %>%
   rmarkdown::paged_table()
 
 ```
