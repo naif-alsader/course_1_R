@@ -1,9 +1,8 @@
 ---
 title: "تحليل البيانات بإستخدام آر"
-subtitle: "(المستوى المتوسط)"
 author: "نايف العتيبي"
 institute: "الجمعية المهنية للاحصائين وعلماء البيانات"
-date: "`r Sys.Date()`"
+date: "22-01-2022"
 output:
   xaringan::moon_reader:
     self_contained: true
@@ -98,8 +97,7 @@ class: inverse
 
 ---
 
-##  ماهو المتجة وماهي  انواع المتجهات (Vector)
-؟
+##  ماهو المتجة وماهي  انواع المتجهات (Vector)?
 
 .pull-left[
 
@@ -125,8 +123,7 @@ c(TRUE, FALSE)
 ---
 
 
-## ماهو الآسم و ماهي علامة `<-`
-؟
+## ماهو الآسم و ماهي علامة "<-"?
 
 ```{r}
 
@@ -155,8 +152,7 @@ obj_addr(c(1,2,3))
 
 
 ---
-## ماهو النوع (class)
-؟
+## ماهو النوع (class)?
 
 .pull-left[
 ```{r}
@@ -182,8 +178,7 @@ z_numeric
 
 ---
 
-## ماهو الكائن (Object)
-؟
+## ماهو الكائن (Object)?
 
 
 ```{r,  error=TRUE}
@@ -203,17 +198,24 @@ w
 
 ---
 
-## ماهي الدالة (function)
-؟
+## ماهي الدالة (function)?
 
 
 
 ```{r}
+library(tidyverse)
+
+a <- c(1,2,3,4,5)
+b <- c(6,7,8,9,10)
+c <- c(11,12,13,14,15)
+d <- c(16,17,18,19,20)
+
+
 df <- tibble(
-  a = rnorm(10),
-  b = rnorm(10),
-  c = rnorm(10),
-  d = rnorm(10)
+  a ,
+  b ,
+  c ,
+  d 
 )
 
 df$a <- ( df$a - mean(df$a))
@@ -235,8 +237,7 @@ df$d <- remove_mean( df$d )
 ---
 
 
-## ماهي الدالة (function)
-؟
+## ماهي الدالة (function)?
 
 
 
@@ -389,7 +390,7 @@ class: inverse, center, middle
 *  لوحة الانتشار للمتغيرات الثنائية الكمية
 --
 
-* السلسلة الزمنية للمتغيرات الي تحتوي علي زمن
+* السلسلة الزمنية للمتغيرات التي تحتوي علي زمن
 --
 
 * رسمة موسياك او مخطط الاشرطة  للمتغيرات الوصفية 
@@ -431,17 +432,20 @@ ggplot2
 
 ```
 
+--
+
+website: https://ggplot2.tidyverse.org
 
 ---
 
 `r chunk_reveal("price_diamonds_showcase1", break_type = "rotate", width = c(1,2), title =
-"### المدرج التكراري للسعر")`
+"### الرسم البياني  للسعر")`
 
 
 ```{r price_diamonds_showcase1, include = FALSE, out.width= 4}
 
 diamonds %>%
-  ggplot(aes(x = price)) + 
+  ggplot(aes(x = price)) + #BREAK
   geom_histogram()  #ROTATE
   geom_boxplot()   #ROTATE
   geom_density(fill = "Red") #ROTATE
@@ -451,7 +455,7 @@ diamonds %>%
 ---
 
 `r chunk_reveal("price_diamonds_histo", width = c(1,2), title =
-"### المدرج التكراري للسعر")`
+"### المدرج التكراري للسعر ")`
 
 ```{r price_diamonds_histo, include = FALSE, out.width= 4}
 diamonds %>%
@@ -555,17 +559,25 @@ cut     | very view of `Fair`      |                    |
 
 
 ---
+class: inverse, center, middle
 
 
+## استكشاف العلاقات
+
+---
 ### استكشاف العلاقات.
 
 اهم النقاط التي يجب التركيز عليها
+--
 
 * هل النمط هو نتيجة صدفة او انها فعلي
+--
 
 * هل يمكنك شرح العلاقة بين المتغيرات
+--
 
 * ماهي قوة النمط
+--
 
 * هل يتيغر النمط مع اضافة متغيرات اخرى
 
@@ -598,7 +610,7 @@ diamonds %>% #BREAK
 ---
 
 `r chunk_reveal("price_cut_diamonds_boxplot", title =
-"### السعر ضد القطع")`
+"### السعر ضد مستوى القطع")`
 
 ```{r price_cut_diamonds_boxplot, include = FALSE}
 diamonds %>% #BREAK
@@ -612,7 +624,7 @@ diamonds %>% #BREAK
 ---
 
 `r chunk_reveal("price_cut_diamonds_density", title =
-"### السعر ضد القطع  باستخدام التوزيع"
+"### السعر ضد مستوى القطع  باستخدام التوزيع"
 )`
 
 ```{r price_cut_diamonds_density, include = FALSE}
@@ -645,15 +657,10 @@ class: inverse, center, middle
 >"EDA is fundamentally a creative process." - Hadly Wickham
 ]
 
---
-حاول تكتشف السبب في حصولنا على قمتين في المدرج التكراري للسعر
-
-حاول تكتشف العلاقة بين السعر والوزن والقطع
-
 ---
 
 `r chunk_reveal("price_carat_diamonds_histo", break_type = "non_seq"  ,title =
-"### تاثير القطع علي السعر باستخدام المدرج التكراري")`
+"### تاثير مستوى القطع علي السعر باستخدام المدرج التكراري")`
 
 ```{r price_carat_diamonds_histo, include = FALSE}
 
@@ -672,67 +679,31 @@ diamonds %>% #BREAK
 ---
 
 
-`r chunk_reveal("price_carat_diamonds_histo2", break_type = "rotate"  ,title =
-"### تاثير القطع علي السعر باستخدام المدرج التكراري")`
+`r chunk_reveal("price_carat_diamonds_histo2" ,title =
+"### العلاقة بين الوزن ومستوى القطع")`
 
 ```{r price_carat_diamonds_histo2, include = FALSE}
 
 diamonds %>%
-  mutate(carat = cut_width(carat, 1)) %>%
-  ggplot(aes(x = price,
-             fill = carat, #ROTATE
-             fill = cut, #ROTATE
-             fill = color, #ROTATE
-             fill = clarity #ROTATE
-             )) +
-  geom_histogram() +
-  scale_x_log10()
-
+  ggplot(aes(x = carat, y = cut)) +
+  geom_boxplot()
 
 ```
 
 ---
 
-### العلاقة بين السعر واكثر من متغير
+`r chunk_reveal("price_all" ,title =
+"### العلاقة بين السعر واكثر من متغير")`
 
 
-.pull-left[
-```{r}
-library(patchwork)
-p1<-diamonds %>%
-  ggplot(aes(y = price, x = carat)) +
-  geom_jitter() +
-  scale_x_log10() +
-  scale_y_log10()
+```{r price_all, include=FALSE}
 
-p2<-diamonds %>%
-  ggplot(aes(y = price, x = cut)) +
-  geom_boxplot() +
-  scale_y_log10()
-
-p3<-diamonds %>%
-  ggplot(aes(y = carat, x = cut)) +
-  geom_boxplot() +
-  scale_y_log10()
-
-p4<- diamonds %>%
-  ggplot(aes(x = log10(carat), y = log10(price), color = cut)) +
-  geom_jitter(alpha = .2) +
-  geom_smooth()
-```
-
-]
-
-
-
-
-.pull-right[
-```{r}
-(p1 + p2 + p3)/p4
-
+diamonds %>%
+  ggplot(aes(x = log10(carat), y = log10(price), color = cut)) + #BREAK
+  geom_jitter(alpha = .2) + #BREAK
+  geom_smooth() #BREAK
 
 ```
-]
 
 
 
@@ -850,7 +821,7 @@ class: center, inverse, middle
 ```{r filter_1, include = FALSE}
 
 flights %>%
-  filter(dep_delay >= 160)
+  filter(dep_delay >= 120)
 
 ```
 
@@ -956,7 +927,7 @@ class: inverse, center, middle
 ---
 
 
-`r chunk_reveal("arrange_1", title =
+`r chunk_reveal("arrange_1", break_type = "rotate", title =
 "
 ### رتب الرحلات حسب الاسرع air_time
 ")`
@@ -965,7 +936,9 @@ class: inverse, center, middle
 ```{r arrange_1, include=FALSE}
 
 flights %>%
-  arrange(desc(air_time))
+  arrange(air_time) %>% #ROTATE
+  arrange(desc(air_time)) %>% #ROTATE 
+  print()
 
 ```
 
@@ -1051,7 +1024,7 @@ class: inverse, middle, center
 
 `r chunk_reveal("mutate_1" ,title =
 "
-### احسب  arr_time - dep_time وسمة  ait_time2
+### احسب  arr_time - dep_time واطلق علية اسم  ait_time2
 ")`
 
 
@@ -1636,7 +1609,6 @@ library(ComplexHeatmap)
 
 riskfactors_missing <- riskfactors %>%
   as_shadow_upset()
-
 
 riskfactors_missing %>%
 Heatmap(
