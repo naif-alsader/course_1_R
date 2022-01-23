@@ -1196,8 +1196,8 @@ knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/6f1ddb544fc5c69a2
 ```{r long_data_1, include=FALSE}
 
 gapminder %>% #BREAK
-  pivot_longer(3:38, names_to  = "year", values_to  = "gdpPercap") %>%  #BREAK
-  separate(year, c("measure", "year"), sep = "_")
+  pivot_longer(3:38) %>%  #BREAK
+  separate(name, c("measure", "year"), sep = "_")
 
 ```
 
