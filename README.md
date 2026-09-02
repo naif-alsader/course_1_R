@@ -5,7 +5,8 @@
 | الملف | الوصف |
 |:------|:------|
 | `index.Rmd` | الدورة الأساسية (3 أيام): أساسيات R، استكشاف البيانات، ggplot2، dplyr، tidyr، الربط، القيم المفقودة |
-| `tidyverse_one_day.Rmd` | **دورة يوم واحد (8 ساعات) للمستوى المتوسط في tidyverse** |
+| `tidyverse_one_day.Rmd` | **دورة يوم واحد (8 ساعات) للمستوى المتوسط في tidyverse** (شرائح xaringan) |
+| `tidyverse_one_day.pptx` | نفس الدورة بصيغة PowerPoint (70 شريحة) مع مخرجات الأكواد والرسوم |
 | `exercises/tidyverse_one_day_exercises.Rmd` | دفتر تمارين المتدرب لدورة اليوم الواحد |
 | `exercises/tidyverse_one_day_solutions.Rmd` | حلول التمارين والمشروع الختامي |
 | `data/` | البيانات المستخدمة: `flights.csv`, `airlines.csv`, `gapminder.csv`, `riskfactors.csv`, `diamonds.csv` |
@@ -31,6 +32,9 @@ verbs, and pushes into the tidyverse features an intermediate analyst uses daily
 | 15:00 – 15:45 | Module 5 | `stringr` + regex, `forcats`, `lubridate` | 15 min |
 | 15:45 – 16:30 | Module 6 | `purrr` map family, `nest` + `map` models, `walk2`, writing functions with `{{ }}` and `:=` | 15 min |
 | 16:30 – 17:00 | Closing | Capstone: which airline is most on time?, recap, references | 30 min |
+
+A PowerPoint version, `tidyverse_one_day.pptx`, carries the same content with the
+R output and plots embedded, for venues where the HTML slides cannot be rendered.
 
 ### Requirements
 
